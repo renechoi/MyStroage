@@ -47,6 +47,7 @@ public class MyStorage {
 					System.out.println("Stock item \n");
 					break;
 				case 3:
+					withdraw(scan, products, counts);
 					System.out.println("Withdraw items \n");
 					break;
 				case 4:
@@ -105,7 +106,7 @@ public class MyStorage {
 		}
 
 		if (foundIdx < 0 ){
-			System.out.println("Item's not found. Unable to stock");
+			System.out.println("Item's not registered. Unable to stock");
 			return;
 		}
 
@@ -119,5 +120,42 @@ public class MyStorage {
 
 		}
 	}
+
+	static void withdraw(Scanner scan, String[] products, int[] counts){
+		System.out.println("Withdraw the item.");
+		System.out.println("A List of registered item");
+
+		for (String product:products){
+			System.out.println("> " + product);
+		}
+
+		System.out.println("Please enter the item name");
+		String input = scan.next();
+		int foundIdx = NOT_FOUND;
+		for (int i=0; i< products.length; ++i) {
+			String product = products[i];
+			if (input.equals(product)) {
+				foundIdx = i;
+				break;
+			}
+		}
+
+		if (foundIdx < 0) {
+			System.out.println("Item's not registered. Unable to stock");
+			return;
+		}
+
+		System.out.println("Please enter amount");
+		int cnt = scan.nextInt();
+		counts[foundIdx] -= cnt;
+
+		System.out.println("Successfully withdraw item. The inventory includes : ");
+		for (int i=0; i< products.length; ++i) {
+			System.out.println("> " + products[i] + ": " + counts[i]);
+		}
+
+	}
+
+
 
 }
