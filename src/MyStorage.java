@@ -1,8 +1,10 @@
 import java.util.Scanner;
 
 public class MyStorage {
+	private static final String EMPTY = "없음";
+
 	static void showMenu(){
-		System.out.println("MyStorage V1");
+		System.out.println("MyStorage V2");
 		System.out.println("------------");
 		System.out.println("1. register item info");
 		System.out.println("2. stock items (stocking)");
@@ -20,6 +22,8 @@ public class MyStorage {
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
+		String[] products = {EMPTY, EMPTY, EMPTY, EMPTY, EMPTY};
+		int[] counts = {0, 0, 0, 0, 0};
 		while (true) {
 
 			// 1. display menu
