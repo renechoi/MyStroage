@@ -18,4 +18,36 @@ public class MyStorage {
 		return select;
 	}
 
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		while (true) {
+
+			// 1. display menu
+			showMenu();
+
+			// 2. choose the menu
+			int menu = selectMenu(scan);
+			if (menu == 5) {
+				System.out.println("Good bye. Program ends.");
+				break;
+			}
+
+			switch (menu){
+				case 1:
+					System.out.println("register items \n");
+					break;
+				case 2 :
+					System.out.println("stock items \n");
+					break;
+				case 3:
+					System.out.println("withdraw items \n");
+					break;
+				case 4:
+					System.out.println("view inventory \n");
+					break;
+			}
+
+		}
+		scan.close();
+	}
 }
