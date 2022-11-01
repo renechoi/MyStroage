@@ -51,6 +51,7 @@ public class MyStorage {
 					System.out.println("Withdraw items \n");
 					break;
 				case 4:
+					search(products, counts);
 					System.out.println("View inventory \n");
 					break;
 			}
@@ -74,7 +75,7 @@ public class MyStorage {
 			}
 		}
 
-		if (emptyIdx < 0) {			// NOT_EMPTY는 -1로 설정. 즉 0보다 작다면 비어있는 슬롯이 없다는 뜻이다.
+		if (emptyIdx < 0) {            // NOT_EMPTY는 -1로 설정. 즉 0보다 작다면 비어있는 슬롯이 없다는 뜻이다.
 			System.out.println("Storage is full. Unable to register.");
 			return;
 		}
@@ -86,26 +87,26 @@ public class MyStorage {
 		}
 	}
 
-	static void stock(Scanner scan, String[] products, int[] counts){
+	static void stock(Scanner scan, String[] products, int[] counts) {
 		System.out.println("Stock the item");
 		System.out.println("A List of registered item");
 
-		for (String product : products){
+		for (String product : products) {
 			System.out.println("> " + product);
 		}
 
 		System.out.println("Please enter the item name");
 		String input = scan.next();
 		int foundIdx = NOT_FOUND;
-		for (int i =0; i < products.length; i++){
+		for (int i = 0; i < products.length; i++) {
 			String product = products[i];
-			if (input.equals(product)){
+			if (input.equals(product)) {
 				foundIdx = i;
 				break;
 			}
 		}
 
-		if (foundIdx < 0 ){
+		if (foundIdx < 0) {
 			System.out.println("Item's not registered. Unable to stock");
 			return;
 		}
@@ -115,24 +116,24 @@ public class MyStorage {
 		counts[foundIdx] += count;
 
 		System.out.println("Successfully stocked item. The inventory includes : ");
-		for (int i = 0 ; i < products.length; i++){
+		for (int i = 0; i < products.length; i++) {
 			System.out.println("> " + products[i] + ": " + counts[i]);
 
 		}
 	}
 
-	static void withdraw(Scanner scan, String[] products, int[] counts){
+	static void withdraw(Scanner scan, String[] products, int[] counts) {
 		System.out.println("Withdraw the item.");
 		System.out.println("A List of registered item");
 
-		for (String product:products){
+		for (String product : products) {
 			System.out.println("> " + product);
 		}
 
 		System.out.println("Please enter the item name");
 		String input = scan.next();
 		int foundIdx = NOT_FOUND;
-		for (int i=0; i< products.length; ++i) {
+		for (int i = 0; i < products.length; ++i) {
 			String product = products[i];
 			if (input.equals(product)) {
 				foundIdx = i;
@@ -150,12 +151,18 @@ public class MyStorage {
 		counts[foundIdx] -= cnt;
 
 		System.out.println("Successfully withdraw item. The inventory includes : ");
-		for (int i=0; i< products.length; ++i) {
+		for (int i = 0; i < products.length; ++i) {
 			System.out.println("> " + products[i] + ": " + counts[i]);
 		}
 
 	}
 
+	static void search(String[] products, int[] counts) {
+		System.out.println("A List of registered item");
+		for (int i = 0; i < products.length; ++i) {
+			System.out.println("> " + products[i] + ": " + counts[i]);
+		}
+	}
 
 
 }
