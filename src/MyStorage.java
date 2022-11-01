@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class MyStorage {
 	private static final String EMPTY = "없음";
 	public static final int NOT_EMPTY = -1;
+	public static final int NOT_FOUND = -1;
 
 	static void showMenu() {
 		System.out.println("MyStorage V2");
@@ -17,8 +18,7 @@ public class MyStorage {
 
 	static int selectMenu(Scanner scan) {
 		System.out.println("Choose the menu (number) :");
-		int select = scan.nextInt();
-		return select;
+		return scan.nextInt();
 	}
 
 	public static void main(String[] args) {
@@ -43,6 +43,7 @@ public class MyStorage {
 					System.out.println("Register item \n");
 					break;
 				case 2:
+					stock(scan, products, counts);
 					System.out.println("Stock item \n");
 					break;
 				case 3:
@@ -81,6 +82,41 @@ public class MyStorage {
 		System.out.println("Item's registered. The inventory includes : ");
 		for (String product : products) {
 			System.out.println(product);
+		}
+	}
+
+	static void stock(Scanner scan, String[] products, int[] counts){
+		System.out.println("Stock the item");
+		System.out.println("A List of registered item");
+
+		for (String product : products){
+			System.out.println("> " + product);
+		}
+
+		System.out.println("Please enter the item name");
+		String input = scan.next();
+		int foundIdx = NOT_FOUND;
+		for (int i =0; i < products.length; i++){
+			String product = products[i];
+			if (input.equals(product)){
+				foundIdx = i;
+				break;
+			}
+		}
+
+		if (foundIdx < 0 ){
+			System.out.println("Item's not found. Unable to stock");
+			return;
+		}
+
+		System.out.println("Please enter amount.");
+		int count = scan.nextInt();
+		counts[foundIdx] += count;
+
+		System.out.println("Successfully stocked item. The inventory includes : ");
+		for (int i = 0 ; i < products.length; i++){
+			System.out.println("> " + products[i] + ": " + counts[i]);
+
 		}
 	}
 
